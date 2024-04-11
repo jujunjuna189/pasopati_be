@@ -77,6 +77,8 @@ Route::post('/bujuk/show', [App\Http\Controllers\Api\Bujuk\BujukController::clas
 // Kelola data
 Route::post('/data/ranpur/store', [App\Http\Controllers\Api\Data\RanpurController::class, 'store']);
 Route::post('/data/kendaraan/store', [App\Http\Controllers\Api\Data\KendaraanController::class, 'store']);
+// Saran dan Masukan
+Route::post('/saran/store', [App\Http\Controllers\Api\Saran\SaranController::class, 'store']);
 //Rekap Data
 Route::post('/report/absensi', [App\Http\Controllers\Api\Report\ReportController::class, 'absensi']);
 Route::post('/report/perizinan', [App\Http\Controllers\Api\Report\ReportController::class, 'perizinan']);
