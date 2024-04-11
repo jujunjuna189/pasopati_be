@@ -18,6 +18,7 @@ class CreateQrcode extends Migration
             $table->string('title');
             $table->string('key');
             $table->string('code')->unique();
+            $table->tinyInteger('is_use')->default(0);
             $table->timestamps();
         });
     }

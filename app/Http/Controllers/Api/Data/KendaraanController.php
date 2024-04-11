@@ -4,15 +4,30 @@ namespace App\Http\Controllers\Api\Data;
 
 use App\Http\Controllers\Controller;
 use App\Models\DtKendaraanModel;
+use App\Models\QrCodeModel;
 use Exception;
 use Illuminate\Http\Request;
 
 class KendaraanController extends Controller
 {
+
+    public $keyQrCode = 5;
+
     public function store(Request $request)
     {
         try {
-            $data['code'] = random_int(3, 10);
+            $qrCode = QrCodeModel::where('key', $this->keyQrCode)->where('is_use', 0)->first();
+            if (!isset($qrCode)) {
+                return response()->json([
+                    'status' => 'Qr Code Tidak tersedia, silahkan tambah qr code',
+                    'data' => [],
+                ], 404);
+            }
+
+            $qrCode->is_use = 1;
+            $qrCode->save();
+
+            $data['code'] = $qrCode->code;
             $data['jenis'] = $request->jenis;
             $data['nomor'] = $request->nomor;
             $data['deskripsi'] = $request->deskripsi;

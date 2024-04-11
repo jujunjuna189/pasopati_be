@@ -105,6 +105,20 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                @if(count($qrcode) > 0)
+                <div class="bg-blue-lt border-dashed p-2 rounded border mb-3">
+                    Qr Code Tersedia
+                </div>
+                @else
+                <div class="bg-red-lt border-dashed p-2 rounded border mb-3">
+                    <div class="d-flex align-items-center" style="gap: 10px;">
+                        <span>Qr Code Tidak Tersedia, silahkan tambahkan Qr Code terlebih dahulu</span>
+                        <a href="{{ route('qrcode', ['key' => 5]) }}" class="btn btn-primary ms-auto">
+                            Tambah Qr Code
+                        </a>
+                    </div>
+                </div>
+                @endif
                 <div class="mb-3">
                     <label class="form-label">Jenis Kendaraan</label>
                     <input type="text" class="form-control" name="jenis" placeholder="..." required>
