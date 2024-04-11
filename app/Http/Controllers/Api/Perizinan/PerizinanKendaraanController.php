@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Perizinan;
 
 use App\Http\Controllers\Controller;
+use App\Models\DtKendaraanModel;
 use App\Models\PerizinanKendaraanModel;
 use App\Models\QrCodeModel;
 use Carbon\Carbon;
@@ -27,13 +28,22 @@ class PerizinanKendaraanController extends Controller
                 $data['tujuan'] = $request->tujuan;
             }
 
-            if (isset($request->jenis_kendaraan) || $request->jenis_kendaraan != "") {
-                $data['jenis_kendaraan'] = $request->jenis_kendaraan;
-            }
-
             $where['code'] = $qrcode;
             $codeLength = QrCodeModel::where($where)->count();
             if ($codeLength > 0) {
+                $dt_kendaraan = DtKendaraanModel::where('code', $qrcode)->first();
+                if (!isset($dt_kendaraan)) {
+                    return response()->json([
+                        'status' => 'Kendaraan tidak ditemukan, Silahkan hubungi admin',
+                        'data' => [],
+                    ], 404);
+                }
+
+                // Set data from attribute data kendaraan
+                $data['jenis_kendaraan'] = $dt_kendaraan->jenis;
+                $data['nomor'] = $dt_kendaraan->nomor;
+                $data['deskripsi'] = $dt_kendaraan->deskripsi;
+
                 $wherePer['user_id'] = $data['user_id'];
                 $checkData = PerizinanKendaraanModel::where($wherePer)->whereDate('created_at', Carbon::now())->get();
                 if ($checkData->count() > 0) {
