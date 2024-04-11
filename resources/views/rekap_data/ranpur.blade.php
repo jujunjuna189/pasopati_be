@@ -40,6 +40,8 @@
                             <th>Waktu Keluar</th>
                             <th>Tujuan</th>
                             <th>Jenis Kendaraan</th>
+                            <th>Nomor Kendaraan</th>
+                            <th>Deskripsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +54,8 @@
                             <td>{{ $val->keluar != null ? Carbon\Carbon::make($val->keluar)->format('d/m/Y H:i:s') : '-' }}</td>
                             <td>{{ $val->tujuan }}</td>
                             <td>{{ $val->jenis_kendaraan }}</td>
+                            <td>{{ $val->nomor }}</td>
+                            <td>{{ $val->deskripsi }}</td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth', 'role:1']], function () {
     // data
     Route::get('/data/ranpur', [App\Http\Controllers\Admin\Data\RanpurController::class, 'index'])->name('data.ranpur');
     Route::get('/data/kendaraan', [App\Http\Controllers\Admin\Data\KendaraanController::class, 'index'])->name('data.kendaraan');
+    // Saran
+    Route::get('/saran', [App\Http\Controllers\Admin\Saran\SaranController::class, 'index'])->name('saran');
     // Report
     Route::get('/report/absensi', [App\Http\Controllers\Admin\Report\ReportController::class, 'absensi'])->name('report.absensi');
     Route::get('/report/perizinan', [App\Http\Controllers\Admin\Report\ReportController::class, 'perizinan'])->name('report.perizinan');

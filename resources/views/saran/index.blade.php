@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Rekap Data Angkutan</h3>
+                <h3 class="card-title">Saran & Masukan</h3>
             </div>
             <div class="card-body border-bottom py-3">
                 <div class="d-flex">
@@ -18,7 +18,9 @@
                     <div class="ms-auto text-muted">
                         Search:
                         <div class="ms-2 d-inline-block">
-                            <input type="text" class="form-control form-control-sm" aria-label="Search invoice">
+                            <form action="javascript:onSearch()" method="get">
+                                <input type="text" name="search" class="form-control form-control-sm" aria-label="Search invoice">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -35,27 +37,17 @@
                                     <polyline points="6 15 12 9 18 15"></polyline>
                                 </svg>
                             </th>
-                            <th>Nama</th>
-                            <th>Waktu Masuk</th>
-                            <th>Waktu Keluar</th>
-                            <th>Tujuan</th>
-                            <th>Jenis Kendaraan</th>
-                            <th>Nomor Kendaraan</th>
-                            <th>Deskripsi</th>
+                            <th>Pengirim</th>
+                            <th>Saran dan Masukan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($report as $val)
+                        @foreach($saran as $val)
                         <tr>
                             <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $val->userModel->name ?? '-' }}</td>
-                            <td>{{ $val->masuk != null ? Carbon\Carbon::make($val->masuk)->format('d/m/Y H:i:s') : '-' }}</td>
-                            <td>{{ $val->keluar != null ? Carbon\Carbon::make($val->keluar)->format('d/m/Y H:i:s') : '-' }}</td>
-                            <td>{{ $val->tujuan }}</td>
-                            <td>{{ $val->jenis_kendaraan }}</td>
-                            <td>{{ $val->nomor }}</td>
-                            <td>{{ $val->deskripsi }}</td>
+                            <td>{{ $val->name ?? '-' }}</td>
+                            <td>{{ $val->saran }}</td>
                         </tr>
                         @endforeach
                     </tbody>
