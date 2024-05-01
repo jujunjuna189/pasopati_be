@@ -39,7 +39,7 @@ class PangkalanController extends Controller
         try {
             $path = GlobalModel::upload_image($request, 'pangkalan');
 
-            // $data['judul'] = $request->judul;
+            $data['judul'] = $request->judul;
             $data['deskripsi'] = $request->deskripsi;
             $data['path'] = $path;
 

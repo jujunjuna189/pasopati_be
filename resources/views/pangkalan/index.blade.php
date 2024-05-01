@@ -38,8 +38,9 @@
                                     <polyline points="6 15 12 9 18 15"></polyline>
                                 </svg>
                             </th>
-                            <th>Foto</th>
+                            <th>Judul</th>
                             <th>Deskripsi</th>
+                            <th>Foto</th>
                             <th style="width: 10rem;" class="bg-dark text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -48,8 +49,9 @@
                         <tr>
                             <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
                             <td>{{ $no++ }}</td>
-                            <td>{{ substr($val->path, 0, 20)}}...</td>
+                            <td>{{ $val->judul ?? '...' }}</td>
                             <td>{{ substr($val->deskripsi, 0, 20)}}...</td>
+                            <td>{{ substr($val->path, 0, 20)}}...</td>
                             <td class="text-center">
                                 <span onclick="window.open('<?= $val->path ?>', '_target')" class="btn btn-icon border-dashed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -80,6 +82,10 @@
                 <div class="mb-3">
                     <label class="form-label">Foto</label>
                     <input type="file" class="form-control" name="file" placeholder="Pilih Gambar" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Judul</label>
+                    <input type="text" class="form-control" name="judul" placeholder="..." required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Deskripsi</label>
