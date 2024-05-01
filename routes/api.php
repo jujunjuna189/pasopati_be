@@ -69,6 +69,9 @@ Route::post('/artikel/store', [App\Http\Controllers\Api\Artikel\ArtikelControlle
 // E-Learning
 Route::post('/e-learning/show', [App\Http\Controllers\Api\ELearning\ELearningController::class, 'show']);
 Route::post('/e-learning/store', [App\Http\Controllers\Api\ELearning\ELearningController::class, 'store']);
+// Pangkalan
+Route::post('/pangkalan/show', [App\Http\Controllers\Api\Pangkalan\PangkalanController::class, 'show']);
+Route::post('/pangkalan/store', [App\Http\Controllers\Api\Pangkalan\PangkalanController::class, 'store']);
 // QrCode
 Route::post('/qrcode/store', [App\Http\Controllers\Api\QrCode\QrCodeController::class, 'store']);
 Route::post('/qrcode/delete', [App\Http\Controllers\Api\QrCode\QrCodeController::class, 'delete']);

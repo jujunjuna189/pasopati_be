@@ -177,6 +177,9 @@ const requestServer = ({ url = '', type = 'post', data = [], onLoader = true, on
         url: url,
         type: type,
         dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
         data: data,
         headers: {
             'X-CSRF-TOKEN': token,

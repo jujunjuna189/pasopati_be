@@ -77,25 +77,8 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('artikel') }}">
-                                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/Article -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-news" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11"></path>
-                                        <line x1="8" y1="8" x2="12" y2="8"></line>
-                                        <line x1="8" y1="12" x2="12" y2="12"></line>
-                                        <line x1="8" y1="16" x2="12" y2="16"></line>
-                                    </svg>
-                                </span>
-                                <span class="nav-link-title">
-                                    Artikel
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('e-learning') }}">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="true">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/book -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-books" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -110,9 +93,23 @@
                                     </svg>
                                 </span>
                                 <span class="nav-link-title">
-                                    E-Learning
+                                    Data Learning
                                 </span>
                             </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('artikel') }}">
+                                    Artikel
+                                </a>
+                                <a class="dropdown-item" href="{{ route('e-learning') }}">
+                                    E-Learning
+                                </a>
+                                <a class="dropdown-item" href="{{ route('e-learning') }}">
+                                    Bujuk
+                                </a>
+                                <a class="dropdown-item" href="{{ route('pangkalan') }}">
+                                    Pangkalan
+                                </a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('qrcode', ['key' => 1]) }}">

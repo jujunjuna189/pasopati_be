@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth', 'role:1']], function () {
     Route::get('/artikel/create', [App\Http\Controllers\Admin\Artikel\ArtikelController::class, 'create'])->name('artikel.create');
     // E-Learning
     Route::get('/e-learning', [App\Http\Controllers\Admin\ELearning\ELearningController::class, 'index'])->name('e-learning');
+    Route::get('/pangkalan', [App\Http\Controllers\Admin\Pangkalan\PangkalanController::class, 'index'])->name('pangkalan');
     // QrCode
     Route::get('/qrcode', [App\Http\Controllers\Admin\QrCode\QrCodeController::class, 'index'])->name('qrcode');
     Route::get('/generate', [App\Http\Controllers\Admin\QrCode\QrCodeController::class, 'generate'])->name('generate');
