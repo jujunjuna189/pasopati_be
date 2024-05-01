@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SaranModel extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'saran';
     protected $guarded = ['id'];
 }
