@@ -10,7 +10,7 @@ class PerizinanRanpurModel extends Model
     use HasFactory;
 
     protected $table = 'perizinan_ranpur';
-    protected $fillable = ['user_id', 'keluar', 'masuk', 'tujuan', 'jenis_kendaraan'];
+    protected $guarded = ['id'];
 
     public function userModel()
     {

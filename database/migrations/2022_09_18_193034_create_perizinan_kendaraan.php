@@ -20,6 +20,8 @@ class CreatePerizinanKendaraan extends Migration
             $table->dateTime('masuk')->nullable();
             $table->string('tujuan')->nullable();
             $table->string('jenis_kendaraan')->nullable();
+            $table->string('nomor')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }

@@ -69,8 +69,16 @@ Route::post('/artikel/store', [App\Http\Controllers\Api\Artikel\ArtikelControlle
 // E-Learning
 Route::post('/e-learning/show', [App\Http\Controllers\Api\ELearning\ELearningController::class, 'show']);
 Route::post('/e-learning/store', [App\Http\Controllers\Api\ELearning\ELearningController::class, 'store']);
+// QrCode
+Route::post('/qrcode/store', [App\Http\Controllers\Api\QrCode\QrCodeController::class, 'store']);
+Route::post('/qrcode/delete', [App\Http\Controllers\Api\QrCode\QrCodeController::class, 'delete']);
 // Bujuk
 Route::post('/bujuk/show', [App\Http\Controllers\Api\Bujuk\BujukController::class, 'show']);
+// Kelola data
+Route::post('/data/ranpur/store', [App\Http\Controllers\Api\Data\RanpurController::class, 'store']);
+Route::post('/data/kendaraan/store', [App\Http\Controllers\Api\Data\KendaraanController::class, 'store']);
+// Saran dan Masukan
+Route::post('/saran/store', [App\Http\Controllers\Api\Saran\SaranController::class, 'store']);
 //Rekap Data
 Route::post('/report/absensi', [App\Http\Controllers\Api\Report\ReportController::class, 'absensi']);
 Route::post('/report/perizinan', [App\Http\Controllers\Api\Report\ReportController::class, 'perizinan']);
@@ -78,6 +86,7 @@ Route::post('/report/ranpur', [App\Http\Controllers\Api\Report\ReportController:
 Route::post('/report/kendaraan', [App\Http\Controllers\Api\Report\ReportController::class, 'kendaraan']);
 Route::post('/report/gudang_senjata', [App\Http\Controllers\Api\Report\ReportController::class, 'gudang_senjata']);
 Route::post('/report/logistik', [App\Http\Controllers\Api\Report\ReportController::class, 'logistik']);
+Route::post('/report/saran', [App\Http\Controllers\Api\Report\ReportController::class, 'saran']);
 // Pengaturan
 // Marquee
 Route::post('/setting/marquee/store', [App\Http\Controllers\Api\Pengaturan\TextMarqueeController::class, 'store']);

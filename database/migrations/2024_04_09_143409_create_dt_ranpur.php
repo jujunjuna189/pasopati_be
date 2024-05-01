@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePerizinanRanpur extends Migration
+class CreateDtRanpur extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreatePerizinanRanpur extends Migration
      */
     public function up()
     {
-        Schema::create('perizinan_ranpur', function (Blueprint $table) {
+        Schema::create('dt_ranpur', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->dateTime('keluar')->nullable();
-            $table->dateTime('masuk')->nullable();
-            $table->string('tujuan')->nullable();
-            $table->string('jenis_kendaraan')->nullable();
+            $table->string('code')->unique();
+            $table->string('jenis')->nullable();
             $table->string('nomor')->nullable();
             $table->text('deskripsi')->nullable();
             $table->timestamps();
@@ -33,6 +30,6 @@ class CreatePerizinanRanpur extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perizinan_ranpur');
+        Schema::dropIfExists('dt_ranpur');
     }
 }

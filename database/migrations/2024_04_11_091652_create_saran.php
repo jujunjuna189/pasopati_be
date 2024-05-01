@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQrcode extends Migration
+class CreateSaran extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateQrcode extends Migration
      */
     public function up()
     {
-        Schema::create('qrcode', function (Blueprint $table) {
+        Schema::create('saran', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('key');
-            $table->string('code')->unique();
-            $table->tinyInteger('is_use')->default(0);
+            $table->bigInteger('from_id');
+            $table->string('from_display');
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateQrcode extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qrcode');
+        Schema::dropIfExists('saran');
     }
 }

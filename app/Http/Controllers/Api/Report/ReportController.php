@@ -9,6 +9,7 @@ use App\Models\LogistikModel;
 use App\Models\PerizinanKendaraanModel;
 use App\Models\PerizinanModel;
 use App\Models\PerizinanRanpurModel;
+use App\Models\SaranModel;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -39,9 +40,9 @@ class ReportController extends Controller
                 ], 200);
             } else {
                 return response()->json([
-                    'status' => 'Failed',
+                    'status' => 'Data kosong',
                     'data' => [],
-                ], 300);
+                ], 404);
             }
         } catch (Exception $e) {
             return response()->json([
@@ -75,9 +76,9 @@ class ReportController extends Controller
                 ], 200);
             } else {
                 return response()->json([
-                    'status' => 'Failed',
+                    'status' => 'Data kosong',
                     'data' => [],
-                ], 300);
+                ], 404);
             }
         } catch (Exception $e) {
             return response()->json([
@@ -100,6 +101,8 @@ class ReportController extends Controller
                     'masuk' => $val->masuk != null ? Carbon::make($val->masuk)->format('H:i:s') : '-',
                     'tujuan' => $val->tujuan ?? '-',
                     'jenis_kendaraan' => $val->jenis_kendaraan ?? '-',
+                    'nomor' => $val->nomor ?? '-',
+                    'deskripsi' => $val->deskripsi ?? '-',
                     'created_at' => $val->created_at != null ? Carbon::make($val->created_at)->format('Y-M-d') : '-',
                     'updated_at' => $val->updated_at != null ? Carbon::make($val->updated_at)->format('Y-M-d') : '-',
                 ];
@@ -112,9 +115,9 @@ class ReportController extends Controller
                 ], 200);
             } else {
                 return response()->json([
-                    'status' => 'Failed',
+                    'status' => 'Data kosong',
                     'data' => [],
-                ], 300);
+                ], 404);
             }
         } catch (Exception $e) {
             return response()->json([
@@ -137,6 +140,8 @@ class ReportController extends Controller
                     'masuk' => $val->masuk != null ? Carbon::make($val->masuk)->format('H:i:s') : '-',
                     'tujuan' => $val->tujuan ?? '-',
                     'jenis_kendaraan' => $val->jenis_kendaraan ?? '-',
+                    'nomor' => $val->nomor ?? '-',
+                    'deskripsi' => $val->deskripsi ?? '-',
                     'created_at' => $val->created_at != null ? Carbon::make($val->created_at)->format('Y-M-d') : '-',
                     'updated_at' => $val->updated_at != null ? Carbon::make($val->updated_at)->format('Y-M-d') : '-',
                 ];
@@ -149,9 +154,9 @@ class ReportController extends Controller
                 ], 200);
             } else {
                 return response()->json([
-                    'status' => 'Failed',
+                    'status' => 'Data kosong',
                     'data' => [],
-                ], 300);
+                ], 404);
             }
         } catch (Exception $e) {
             return response()->json([
@@ -186,9 +191,9 @@ class ReportController extends Controller
                 ], 200);
             } else {
                 return response()->json([
-                    'status' => 'Failed',
+                    'status' => 'Data kosong',
                     'data' => [],
-                ], 300);
+                ], 404);
             }
         } catch (Exception $e) {
             return response()->json([
@@ -221,9 +226,42 @@ class ReportController extends Controller
                 ], 200);
             } else {
                 return response()->json([
-                    'status' => 'Failed',
+                    'status' => 'Data kosong',
                     'data' => [],
-                ], 300);
+                ], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'Server Error',
+                'data' => [],
+            ], 500);
+        }
+    }
+    
+    public function saran()
+    {
+        try {
+            $saran = SaranModel::orderBy('id', 'desc')->get();
+            $response = [];
+            foreach ($saran as $val) {
+                $response[] = [
+                    'from_display' => $val->from_display ?? '-',
+                    'message' => $val->message ?? '-',
+                    'created_at' => Carbon::make($val->created_at)->format('Y-M-d H:i:s'),
+                    'updated_at' => Carbon::make($val->updated_at)->format('Y-M-d H:i:s'),
+                ];
+            }
+
+            if ($response) {
+                return response()->json([
+                    'status' => 'Success',
+                    'data' => $response,
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => 'Data kosong',
+                    'data' => [],
+                ], 404);
             }
         } catch (Exception $e) {
             return response()->json([

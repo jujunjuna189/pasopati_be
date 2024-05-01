@@ -28,14 +28,14 @@ class StaffController extends Controller
                     "name" => "Staf Log",
                     "url" => "https://drive.google.com/drive/folders/11cydmF4MfREMdaVe7toMZrXngBMFKYuK?usp=sharing",
                 ],
-                (object)[
-                    "name" => "Staf Ter",
-                    "url" => "https://drive.google.com/drive/folders/1SWrPfz166bTb9aTyvYJp3vzYI6izNARr?usp=drive_link",
-                ],
-                (object)[
-                    "name" => "Staf Ren",
-                    "url" => "https://drive.google.com/drive/folders/13Eva-aVIoL6rUjX9_bEM_xVcQI76d9VH?usp=share_link",
-                ],
+                // (object)[
+                //     "name" => "Staf Ter",
+                //     "url" => "https://drive.google.com/drive/folders/1SWrPfz166bTb9aTyvYJp3vzYI6izNARr?usp=drive_link",
+                // ],
+                // (object)[
+                //     "name" => "Staf Ren",
+                //     "url" => "https://drive.google.com/drive/folders/13Eva-aVIoL6rUjX9_bEM_xVcQI76d9VH?usp=share_link",
+                // ],
             ];
 
             return response()->json([

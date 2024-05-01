@@ -14,10 +14,29 @@ class QrCodeController extends Controller
     // 02-01-(A/B/C) Kembalikan Senjata
     // 02-02-(A/B/C) Ambil Senjata
 
+    public $keys = [];
 
-    public function index()
+    public function __construct()
     {
-        $data['qrcode'] = QrCodeModel::orderBy('key', 'asc')->get();
+        $this->keys = [
+            (object)[
+                'key' => 1,
+                'label' => 'Perizinan',
+            ],
+            (object)[
+                'key' => 4,
+                'label' => 'Kendaraan',
+            ],
+        ];
+    }
+
+    public function index(Request $request)
+    {
+        $data['keys'] = $this->keys;
+        $data['current_key'] = $this->keys[array_search($request->key, array_column($this->keys, 'key'))];
+        $data['qrcode'] = QrCodeModel::where('key', $request->key)->orderBy('key', 'asc')->get();
+        $data['no'] = 1;
+
         return view('generate_qrcode.qrcode', $data);
     }
 

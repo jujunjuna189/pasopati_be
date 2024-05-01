@@ -104,13 +104,13 @@ const close_swal = (notif_status = true, message = 'Success', icon = 'success') 
         if (notif_status) {
             notif(message, icon);
         }
-    }, 1000)
+    }, 500)
 }
 
 const reloadPage = () => {
     setTimeout(function () {
         location.reload();
-    }, 2000);
+    }, 1000);
 }
 
 const reload = () => {
@@ -190,7 +190,8 @@ const requestServer = ({ url = '', type = 'post', data = [], onLoader = true, on
             onSuccess(data);
         },
         error: function (error) {
-            close_swal(true, 'Terjadi kesalahan saat request data', 'error');
+            console.log(error);
+            close_swal(true, error?.responseJSON?.status ?? 'Terjadi kesalahan saat request data', 'error');
         }
     });
 }

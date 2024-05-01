@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Rekap Data Kendaraan Tempur</h3>
+                <h3 class="card-title">Rekap Data Kendaraan</h3>
             </div>
             <div class="card-body border-bottom py-3">
                 <div class="d-flex">
@@ -40,6 +40,8 @@
                             <th>Waktu Keluar</th>
                             <th>Tujuan</th>
                             <th>Jenis Kendaraan</th>
+                            <th>Nomor Kendaraan</th>
+                            <th>Deskripsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +54,8 @@
                             <td>{{ $val->keluar != null ? Carbon\Carbon::make($val->keluar)->format('d/m/Y H:i:s') : '-' }}</td>
                             <td>{{ $val->tujuan }}</td>
                             <td>{{ $val->jenis_kendaraan }}</td>
+                            <td>{{ $val->nomor }}</td>
+                            <td>{{ $val->deskripsi }}</td>
                         </tr>
                         @endforeach
                     </tbody>
