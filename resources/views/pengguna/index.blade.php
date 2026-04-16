@@ -59,6 +59,7 @@
                             @endif
                             @if($table->aksi)
                             <td class="text-center">
+                                @if($table->view)
                                 <a href="{{ route('pengguna.view', ['user_id' => $val->id]) }}" class="btn btn-icon border-dashed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -66,6 +67,19 @@
                                         <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path>
                                     </svg>
                                 </a>
+                                @endif
+                                @if($table->delete)
+                                <span onclick="deletePengguna(<?= $val->id ?>)" class="btn btn-icon border-dashed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hapus" style="cursor: pointer;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <polyline points="4 7 l 1 16 a2 2 0 0 0 2 2 h 8 a2 2 0 0 0 2 -2 l 1 -16"></polyline>
+                                        <line x1="12" y1="4" x2="12" y2="7"></line>
+                                        <line x1="7" y1="7" x2="17" y2="7"></line>
+                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                                    </svg>
+                                </span>
+                                @endif
                                 <!-- <a href="#" class="btn btn-icon border-dashed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ubah">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -132,6 +146,46 @@
     const onSearch = () => {
         let searchData = $(_inputSearch).val();
         location.href = "<?= url()->current() . '?filter[name]=' ?>" + searchData + "<?= '&key=' . $role->key ?>";
+    }
+
+    const deletePengguna = (user_id) => {
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            text: 'Apakah Anda yakin ingin menghapus pengguna ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log('Menghapus pengguna dengan ID:', user_id);
+                
+                requestServer({
+                    url: url + '/api/pengguna/delete',
+                    data: {
+                        user_id: user_id
+                    },
+                    onLoader: true,
+                    onSuccess: function(response) {
+                        console.log('Delete response:', response);
+                        close_swal(true, response.message || 'Pengguna berhasil dihapus', 'success');
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1500);
+                    },
+                    onError: function(error) {
+                        console.log('Delete error:', error);
+                        let errorMsg = 'Gagal menghapus pengguna';
+                        if (error.responseJSON && error.responseJSON.message) {
+                            errorMsg = error.responseJSON.message;
+                        }
+                        close_swal(true, errorMsg, 'error');
+                    }
+                });
+            }
+        });
     }
 </script>
 @endpush

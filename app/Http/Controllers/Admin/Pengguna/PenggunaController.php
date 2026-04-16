@@ -19,15 +19,21 @@ class PenggunaController extends Controller
         switch ($role) {
             case 1: // Admin
                 $column['kemampuan'] = false;
-                $column['aksi'] = false;
+                $column['aksi'] = true;
+                $column['view'] = false;
+                $column['delete'] = true;
                 break;
             case 3: // Personil
                 $column['kemampuan'] = true;
                 $column['aksi'] = true;
+                $column['view'] = true;
+                $column['delete'] = true;
                 break;
             default: // Default
                 $column['kemampuan'] = false;
                 $column['aksi'] = false;
+                $column['view'] = false;
+                $column['delete'] = false;
                 break;
         }
 

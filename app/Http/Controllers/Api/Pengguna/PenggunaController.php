@@ -37,4 +37,59 @@ class PenggunaController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * Hapus Pengguna
+     */
+    public function delete(Request $request)
+    {
+        try {
+            $user_id = $request->user_id;
+            
+            // Validasi user_id
+            if (empty($user_id)) {
+                return response()->json([
+                    'status' => 'Validation Error',
+                    'message' => 'ID pengguna harus diisi',
+                    'data' => [],
+                ], 422);
+            }
+
+            // Cegah admin menghapus dirinya sendiri
+            $authUser = auth()->user();
+            if ($authUser && $authUser->id == $user_id) {
+                return response()->json([
+                    'status' => 'Error',
+                    'message' => 'Anda tidak dapat menghapus akun Anda sendiri',
+                    'data' => [],
+                ], 403);
+            }
+
+            $user = User::find($user_id);
+
+            if (empty($user)) {
+                return response()->json([
+                    'status' => 'Not Found',
+                    'message' => 'Pengguna tidak ditemukan',
+                    'data' => [],
+                ], 404);
+            }
+
+            $user->delete();
+
+            return response()->json([
+                'status' => 'Success',
+                'message' => 'Pengguna berhasil dihapus',
+                'data' => [],
+            ], 200);
+        } catch (\Exception $th) {
+            \Log::error('User Delete Error: ' . $th->getMessage());
+            
+            return response()->json([
+                'status' => 'Server Error',
+                'message' => 'Terjadi kesalahan: ' . $th->getMessage(),
+                'data' => [],
+            ], 500);
+        }
+    }
 }

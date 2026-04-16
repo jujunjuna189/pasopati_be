@@ -25,6 +25,7 @@ Route::post('/register', [App\Http\Controllers\Api\Auth\AuthController::class, '
 Route::post('/profile/update', [App\Http\Controllers\Api\Pengguna\ProfileController::class, 'update']);
 // Pengguna
 Route::post('/pengguna/show', [App\Http\Controllers\Api\Pengguna\PenggunaController::class, 'show']);
+Route::post('/pengguna/delete', [App\Http\Controllers\Api\Pengguna\PenggunaController::class, 'delete']);
 // Pengguna Kemampuan
 Route::post('/pengguna/kemampuan/show', [App\Http\Controllers\Api\Pengguna\KemampuanController::class, 'show']);
 Route::post('/pengguna/kemampuan/store', [App\Http\Controllers\Api\Pengguna\KemampuanController::class, 'store']);
