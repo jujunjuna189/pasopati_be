@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth', 'role:1']], function () {
     // Artikel
     Route::get('/artikel', [App\Http\Controllers\Admin\Artikel\ArtikelController::class, 'index'])->name('artikel');
     Route::get('/artikel/create', [App\Http\Controllers\Admin\Artikel\ArtikelController::class, 'create'])->name('artikel.create');
+    Route::get('/artikel/edit/{artikel_id}', [App\Http\Controllers\Admin\Artikel\ArtikelController::class, 'edit'])->name('artikel.edit');
     // E-Learning
     Route::get('/e-learning', [App\Http\Controllers\Admin\ELearning\ELearningController::class, 'index'])->name('e-learning');
     Route::get('/pangkalan', [App\Http\Controllers\Admin\Pangkalan\PangkalanController::class, 'index'])->name('pangkalan');

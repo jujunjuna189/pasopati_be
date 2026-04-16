@@ -34,4 +34,18 @@ class ArtikelController extends Controller
 
         return view('artikel.form.create', $data);
     }
+
+    public function edit(Request $request)
+    {
+        $artikel = ArtikelModel::find($request->artikel_id);
+
+        if (empty($artikel)) {
+            return view('error.404');
+        }
+
+        $data['artikel'] = $artikel;
+        $data['artikel_id'] = $artikel->id;
+
+        return view('artikel.form.edit', $data);
+    }
 }

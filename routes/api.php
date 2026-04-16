@@ -66,6 +66,7 @@ Route::post('/event/delete', [App\Http\Controllers\Api\Event\EventController::cl
 // Artikel
 Route::post('/artikel/show', [App\Http\Controllers\Api\Artikel\ArtikelController::class, 'show']);
 Route::post('/artikel/store', [App\Http\Controllers\Api\Artikel\ArtikelController::class, 'store']);
+Route::post('/artikel/delete', [App\Http\Controllers\Api\Artikel\ArtikelController::class, 'delete']);
 // E-Learning
 Route::post('/e-learning/show', [App\Http\Controllers\Api\ELearning\ELearningController::class, 'show']);
 Route::post('/e-learning/store', [App\Http\Controllers\Api\ELearning\ELearningController::class, 'store']);

@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header justify-content-between">
-                <h3 class="card-title">Buat Artikel</h3>
+                <h3 class="card-title">Edit Artikel</h3>
                 <div>
                     <a href="#" class="btn bg-blue-lt border-dashed" onclick="saveArtikel()">Simpan</a>
                 </div>
@@ -14,13 +14,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Judul">Judul</label>
-                            <input type="text" name="judul" id="judul" class="form-control" required placeholder="...">
+                            <input type="text" name="judul" id="judul" class="form-control" required placeholder="..." value="{{ $artikel->judul ?? '' }}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Deskripsi">Deskripsi</label>
-                            <textarea name="deskripsi" id="deskripsi" cols="30" rows="3" class="form-control" required placeholder="..."></textarea>
+                            <textarea name="deskripsi" id="deskripsi" cols="30" rows="3" class="form-control" required placeholder="...">{{ $artikel->deskripsi ?? '' }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -33,13 +33,25 @@
 @endsection
 @push('script')
 <script>
-    let _artikel_id = <?= $artikel_id ?? 'null' ?>;
+    let _artikel_id = <?= $artikel_id ?>;
     const _summernote = '#summernote';
     const _form = '#form';
     const _formJudul = _form + ' #judul';
     const _formDeskripsi = _form + ' #deskripsi';
 
     $(document).ready(function() {
+        // Parse artikel content dengan aman
+        let rawArticle = '<?= addslashes($artikel->artikel ?? '') ?>';
+        let artikelContent = null;
+        
+        try {
+            // Coba parse jika JSON
+            artikelContent = JSON.parse(rawArticle);
+        } catch (e) {
+            // Jika bukan JSON, gunakan as-is
+            artikelContent = rawArticle;
+        }
+        
         let summernote = $(_summernote).summernote({
             placeholder: 'Tulis disini!...',
             height: 500, // set editor height
@@ -61,7 +73,10 @@
             ],
         });
 
-        // summernote.summernote('lineHeight', 0.3);
+        // Set konten artikel
+        if (artikelContent) {
+            $(_summernote).summernote('code', artikelContent);
+        }
     });
 
     const getDataArtikel = () => {
@@ -76,7 +91,7 @@
         }
 
         let data = {
-            artikel_id: _artikel_id || '',
+            artikel_id: _artikel_id,
             judul: judul,
             deskripsi: deskripsi,
             artikel: artikel,
@@ -97,23 +112,20 @@
             onLoader: true,
             onSuccess: function(value) {
                 console.log('Response success:', value);
-                close_swal(true, value.message || 'Berhasil tambah artikel', 'success');
-                setData(value);
+                close_swal(true, value.message || 'Berhasil update artikel', 'success');
+                setTimeout(() => {
+                    window.location.href = '{{ route('artikel') }}';
+                }, 1500);
             },
             onError: function(error) {
                 console.log('Error Response:', error);
-                let errorMsg = 'Gagal menyimpan artikel';
+                let errorMsg = 'Gagal mengupdate artikel';
                 if (error.responseJSON && error.responseJSON.message) {
                     errorMsg = error.responseJSON.message;
                 }
                 close_swal(true, errorMsg, 'error');
             }
         });
-    }
-
-    const setData = (value) => {
-        _artikel_id = value.data.id;
-        console.log(value);
     }
 </script>
 @endpush

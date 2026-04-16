@@ -172,14 +172,24 @@ const resetToastPosition = () => {
 }
 
 // Request to server
-const requestServer = ({ url = '', type = 'post', data = [], onLoader = true, onSuccess }) => {
+const requestServer = ({ url = '', type = 'post', data = [], onLoader = true, onSuccess, onError }) => {
+    // Tentukan content type berdasarkan tipe data
+    let contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
+    let processData = true;
+    
+    // Jika data adalah FormData, gunakan konfigurasi khusus
+    if (data instanceof FormData) {
+        contentType = false;
+        processData = false;
+    }
+    
     $.ajax({
         url: url,
         type: type,
         dataType: 'json',
         cache: false,
-        contentType: false,
-        processData: false,
+        contentType: contentType,
+        processData: processData,
         data: data,
         headers: {
             'X-CSRF-TOKEN': token,
@@ -189,12 +199,34 @@ const requestServer = ({ url = '', type = 'post', data = [], onLoader = true, on
                 swal_loader('Loading...');
             }
         },
-        success: function (data) {
-            onSuccess(data);
+        success: function (response) {
+            // Check if response has onSuccess callback
+            if (onSuccess && typeof onSuccess === 'function') {
+                onSuccess(response);
+            } else {
+                close_swal(false);
+            }
         },
         error: function (error) {
-            console.log(error);
-            close_swal(true, error?.responseJSON?.status ?? 'Terjadi kesalahan saat request data', 'error');
+            console.log('Error Response:', error);
+            
+            // Jika ada callback onError, gunakan itu
+            if (onError && typeof onError === 'function') {
+                onError(error);
+            } else {
+                // Default error handling
+                let errorMsg = 'Terjadi kesalahan saat request data';
+                
+                if (error.responseJSON && error.responseJSON.message) {
+                    errorMsg = error.responseJSON.message;
+                } else if (error.responseJSON && error.responseJSON.status) {
+                    errorMsg = error.responseJSON.status;
+                } else if (error.statusText) {
+                    errorMsg = error.statusText;
+                }
+                
+                close_swal(true, errorMsg, 'error');
+            }
         }
     });
 }
