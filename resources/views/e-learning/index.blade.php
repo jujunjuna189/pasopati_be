@@ -60,6 +60,16 @@
                                         <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path>
                                     </svg>
                                 </span>
+                                <span onclick="deleteELearning(<?= $val->id ?>)" class="btn btn-icon border-dashed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hapus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <polyline points="4 7 l 1 16 a2 2 0 0 0 2 2 h 8 a2 2 0 0 0 2 -2 l 1 -16"></polyline>
+                                        <line x1="12" y1="4" x2="12" y2="7"></line>
+                                        <line x1="7" y1="7" x2="17" y2="7"></line>
+                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                                    </svg>
+                                </span>
                             </td>
                         </tr>
                         @endforeach
@@ -150,6 +160,46 @@
                 closeModal();
                 reloadPage();
             },
+        });
+    }
+
+    const deleteELearning = (id) => {
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            text: 'Apakah Anda yakin ingin menghapus e-learning ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log('Menghapus e-learning dengan ID:', id);
+                
+                requestServer({
+                    url: url + '/api/e-learning/delete',
+                    data: {
+                        id: id
+                    },
+                    onLoader: true,
+                    onSuccess: function(response) {
+                        console.log('Delete response:', response);
+                        close_swal(true, response.message || 'E-learning berhasil dihapus', 'success');
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1500);
+                    },
+                    onError: function(error) {
+                        console.log('Delete error:', error);
+                        let errorMsg = 'Gagal menghapus e-learning';
+                        if (error.responseJSON && error.responseJSON.message) {
+                            errorMsg = error.responseJSON.message;
+                        }
+                        close_swal(true, errorMsg, 'error');
+                    }
+                });
+            }
         });
     }
 </script>

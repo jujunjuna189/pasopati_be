@@ -50,16 +50,11 @@ Route::post('/gudang_senjata/store', [App\Http\Controllers\Api\GudangSenjata\Gud
 Route::post('/logistik/store', [App\Http\Controllers\Api\Logistik\LogistikController::class, 'store']);
 // Staff
 Route::post('/staff/show', [App\Http\Controllers\Api\Staff\StaffController::class, 'show']);
-//Pejabat armed
-Route::post('/armed/show', [App\Http\Controllers\Api\Pejabat\ArmedController::class, 'show']);
-Route::post('/armed/store', [App\Http\Controllers\Api\Pejabat\ArmedController::class, 'store']);
-Route::post('/armed/update', [App\Http\Controllers\Api\Pejabat\ArmedController::class, 'update']);
-Route::post('/armed/delete', [App\Http\Controllers\Api\Pejabat\ArmedController::class, 'delete']);
-//Pejabat kostrad
-Route::post('/kostrad/show', [App\Http\Controllers\Api\Pejabat\KostradController::class, 'show']);
-Route::post('/kostrad/store', [App\Http\Controllers\Api\Pejabat\KostradController::class, 'store']);
-Route::post('/kostrad/update', [App\Http\Controllers\Api\Pejabat\KostradController::class, 'update']);
-Route::post('/kostrad/delete', [App\Http\Controllers\Api\Pejabat\KostradController::class, 'delete']);
+// Pejabat
+Route::post('/pejabat/show', [App\Http\Controllers\Api\Pejabat\PejabatController::class, 'show']);
+Route::post('/pejabat/store', [App\Http\Controllers\Api\Pejabat\PejabatController::class, 'store']);
+Route::post('/pejabat/update', [App\Http\Controllers\Api\Pejabat\PejabatController::class, 'update']);
+Route::post('/pejabat/delete', [App\Http\Controllers\Api\Pejabat\PejabatController::class, 'delete']);
 // Event
 Route::post('/event/show', [App\Http\Controllers\Api\Event\EventController::class, 'show']);
 Route::post('/event/store', [App\Http\Controllers\Api\Event\EventController::class, 'store']);
@@ -71,6 +66,7 @@ Route::post('/artikel/delete', [App\Http\Controllers\Api\Artikel\ArtikelControll
 // E-Learning
 Route::post('/e-learning/show', [App\Http\Controllers\Api\ELearning\ELearningController::class, 'show']);
 Route::post('/e-learning/store', [App\Http\Controllers\Api\ELearning\ELearningController::class, 'store']);
+Route::post('/e-learning/delete', [App\Http\Controllers\Api\ELearning\ELearningController::class, 'delete']);
 // Pangkalan
 Route::post('/pangkalan/show', [App\Http\Controllers\Api\Pangkalan\PangkalanController::class, 'show']);
 Route::post('/pangkalan/store', [App\Http\Controllers\Api\Pangkalan\PangkalanController::class, 'store']);

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Pejabat;
 
 use App\Http\Controllers\Controller;
-use App\Models\KostradModel;
+use App\Models\PejabatModel;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -41,7 +41,7 @@ class KostradController extends Controller
     public function show()
     {
         try {
-            $response = KostradModel::orderBy('created_at', 'desc')->get();
+            $response = PejabatModel::where('tipe', 'kostrad')->orderBy('created_at', 'desc')->get();
             foreach ($response as $val) {
                 $val['lates'] = !empty($val->created_at) && Carbon::parse($val->created_at)->addDays(2) > Carbon::now() ? 'Baru' : null;
             }
@@ -81,8 +81,9 @@ class KostradController extends Controller
             $data['pangkat'] = $request->pangkat;
             $data['nrp'] = $request->nrp;
             $data['jabatan'] = $request->jabatan;
+            $data['tipe'] = 'kostrad';
 
-            $response = KostradModel::create($data);
+            $response = PejabatModel::create($data);
 
             if ($response) {
                 return response()->json([
@@ -122,7 +123,7 @@ class KostradController extends Controller
             $data['nrp'] = $request->nrp;
             $data['jabatan'] = $request->jabatan;
 
-            $response = KostradModel::find($kostrad_id);
+            $response = PejabatModel::find($kostrad_id);
 
             if (!empty($response)) {
                 $response->update($data);
@@ -158,7 +159,7 @@ class KostradController extends Controller
             // Initialize
             $kostrad_id = $request->id;
             // find data
-            $response = KostradModel::find($kostrad_id);
+            $response = PejabatModel::find($kostrad_id);
 
             if (!empty($response)) {
                 $response->delete();

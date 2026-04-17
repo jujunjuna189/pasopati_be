@@ -26,6 +26,36 @@
                         Kostrad
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="#tabs-divif1" class="nav-link fw-bold" data-bs-toggle="tab" onclick="switchTab(3)">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="12" cy="7" r="4" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </svg>
+                        Divif 1
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tabs-menarmed1" class="nav-link fw-bold" data-bs-toggle="tab" onclick="switchTab(4)">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="12" cy="7" r="4" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </svg>
+                        Menarmed 1
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tabs-yonarmed9" class="nav-link fw-bold" data-bs-toggle="tab" onclick="switchTab(5)">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="12" cy="7" r="4" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </svg>
+                        Yonarmed 9
+                    </a>
+                </li>
             </ul>
             <div class="card-body">
                 <div class="tab-content">
@@ -59,6 +89,87 @@
                     <div class="tab-pane" id="tabs-kostrad">
                         <div class="text-end">
                             <a href="#" class="badge bg-primary-lt py-2 border-dashed text-decoration-none" onclick="createPejabat()">Tambah Kostrad</a>
+                        </div>
+                        <div class="my-4 px-3" id="content">
+                            <?php for ($i = 0; $i < 5; $i++) : ?>
+                                <div class="d-flex align-items-center my-3">
+                                    <div class="rounded-circle border-dashed d-flex justify-content-center align-items-center bg-teal-lt" style="width: 50px; height: 50px">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="ms-3 placeholder-glow d-inline">
+                                        <div>
+                                            <div class="placeholder" style="width: 150px;"></div>
+                                        </div>
+                                        <div>
+                                            <div class="placeholder" style="width: 100px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-0">
+                            <?php endfor ?>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tabs-divif1">
+                        <div class="text-end">
+                            <a href="#" class="badge bg-primary-lt py-2 border-dashed text-decoration-none" onclick="createPejabat()">Tambah Divif 1</a>
+                        </div>
+                        <div class="my-4 px-3" id="content">
+                            <?php for ($i = 0; $i < 5; $i++) : ?>
+                                <div class="d-flex align-items-center my-3">
+                                    <div class="rounded-circle border-dashed d-flex justify-content-center align-items-center bg-teal-lt" style="width: 50px; height: 50px">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="ms-3 placeholder-glow d-inline">
+                                        <div>
+                                            <div class="placeholder" style="width: 150px;"></div>
+                                        </div>
+                                        <div>
+                                            <div class="placeholder" style="width: 100px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-0">
+                            <?php endfor ?>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tabs-menarmed1">
+                        <div class="text-end">
+                            <a href="#" class="badge bg-primary-lt py-2 border-dashed text-decoration-none" onclick="createPejabat()">Tambah Menarmed 1</a>
+                        </div>
+                        <div class="my-4 px-3" id="content">
+                            <?php for ($i = 0; $i < 5; $i++) : ?>
+                                <div class="d-flex align-items-center my-3">
+                                    <div class="rounded-circle border-dashed d-flex justify-content-center align-items-center bg-teal-lt" style="width: 50px; height: 50px">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="ms-3 placeholder-glow d-inline">
+                                        <div>
+                                            <div class="placeholder" style="width: 150px;"></div>
+                                        </div>
+                                        <div>
+                                            <div class="placeholder" style="width: 100px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-0">
+                            <?php endfor ?>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tabs-yonarmed9">
+                        <div class="text-end">
+                            <a href="#" class="badge bg-primary-lt py-2 border-dashed text-decoration-none" onclick="createPejabat()">Tambah Yonarmed 9</a>
                         </div>
                         <div class="my-4 px-3" id="content">
                             <?php for ($i = 0; $i < 5; $i++) : ?>
@@ -177,6 +288,9 @@
 <script>
     const _tabs_armed = '#tabs-armed';
     const _tabs_kostrad = '#tabs-kostrad';
+    const _tabs_divif1 = '#tabs-divif1';
+    const _tabs_menarmed1 = '#tabs-menarmed1';
+    const _tabs_yonarmed9 = '#tabs-yonarmed9';
     // Tab default
     let _currentTab = 1;
     // Set data pejabat untuk kebutuhan saat update dan isi form pejabat
@@ -185,19 +299,48 @@
     let _drafOption = {};
     let _option = [{
             tab: 1,
-            pejabat: 'armed',
+            satuan: 'armed',
             tabContent: _tabs_armed + ' #content',
-            storeUrl: '/api/armed/store',
-            updateUrl: '/api/armed/update',
-            deleteUrl: '/api/armed/delete'
+            storeUrl: '/api/pejabat/store',
+            updateUrl: '/api/pejabat/update',
+            deleteUrl: '/api/pejabat/delete',
+            showUrl: '/api/pejabat/show'
         },
         {
             tab: 2,
-            pejabat: 'kostrad',
+            satuan: 'kostrad',
             tabContent: _tabs_kostrad + ' #content',
-            storeUrl: '/api/kostrad/store',
-            updateUrl: '/api/kostrad/update',
-            deleteUrl: '/api/kostrad/delete',
+            storeUrl: '/api/pejabat/store',
+            updateUrl: '/api/pejabat/update',
+            deleteUrl: '/api/pejabat/delete',
+            showUrl: '/api/pejabat/show'
+        },
+        {
+            tab: 3,
+            satuan: 'divif-1-kostrad',
+            tabContent: _tabs_divif1 + ' #content',
+            storeUrl: '/api/pejabat/store',
+            updateUrl: '/api/pejabat/update',
+            deleteUrl: '/api/pejabat/delete',
+            showUrl: '/api/pejabat/show'
+        },
+        {
+            tab: 4,
+            satuan: 'menarmed-1-sthira-yudha',
+            tabContent: _tabs_menarmed1 + ' #content',
+            storeUrl: '/api/pejabat/store',
+            updateUrl: '/api/pejabat/update',
+            deleteUrl: '/api/pejabat/delete',
+            showUrl: '/api/pejabat/show'
+        },
+        {
+            tab: 5,
+            satuan: 'yonarmed-9-pasopati',
+            tabContent: _tabs_yonarmed9 + ' #content',
+            storeUrl: '/api/pejabat/store',
+            updateUrl: '/api/pejabat/update',
+            deleteUrl: '/api/pejabat/delete',
+            showUrl: '/api/pejabat/show'
         },
     ];
 
@@ -210,20 +353,23 @@
         // Initialize
         _currentTab = tab;
         _drafOption = _option.find((x) => x.tab == tab);
-        let pejabat = _drafOption.pejabat; // armed or kostrad
+        let satuan = _drafOption.satuan; // armed or kostrad
         // Get data
-        getData(pejabat, function(value) {
+        getData(satuan, function(value) {
             _dataPejabat = {
-                pejabat: pejabat,
+                satuan: satuan,
                 data: value,
             };
             drawContent();
         });
     }
     // Memulau content
-    const getData = async (jabatan, callback) => {
+    const getData = async (satuan, callback) => {
         requestServer({
-            url: url + '/api/' + jabatan + '/show',
+            url: url + _drafOption.showUrl,
+            data: {
+                satuan: satuan
+            },
             onLoader: true,
             onSuccess: function(value) {
                 close_swal(false);
@@ -369,6 +515,7 @@
             pangkat: pangkat,
             nrp: nrp,
             jabatan: jabatan,
+            satuan: _drafOption.satuan,
         };
 
         if (_drafOptionRequest.action == 'update') {

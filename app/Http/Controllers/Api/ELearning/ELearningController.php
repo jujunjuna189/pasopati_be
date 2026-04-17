@@ -61,4 +61,33 @@ class ELearningController extends Controller
             ], 500);
         }
     }
+
+    public function delete(Request $request)
+    {
+        try {
+            $e_learning = ELearningModel::find($request->id);
+
+            if (!$e_learning) {
+                return response()->json([
+                    'status' => 'Failed',
+                    'data' => [],
+                    'message' => 'Data tidak ditemukan'
+                ], 404);
+            }
+
+            $e_learning->delete();
+
+            return response()->json([
+                'status' => 'Success',
+                'data' => [],
+                'message' => 'Berhasil menghapus data'
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'Server Error',
+                'data' => [],
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 }
